@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Dodawanie nowego samochodu</title>
+</head>
+<body>
+      <form th:action="@{/dodajAuto}" th:object="${autoIn}" method="post">
+        VIN: <input th:field="*{vin}" type="text" required><br>
+        NUMER REJESTRACYJNY: <input th:field="*{nrRej}" type="text" required><br>
+        MARKA: <input th:field="*{marka}" type="text" required><br>
+        MODEL: <input th:field="*{model}" type="text" required><br>
+        TYP: <input th:field="*{typ}" type="text"><br>
+        PALIWO: <input th:field="*{paliwo}" type="text"><br>
+        KOLOR: <input th:field="*{kolor}" type="text" required><br>
+        ROK: <input th:field="*{rok}" type="number" required><br>
+        PRZEBIEG: <input th:field="*{przebieg}" type="number" required><br>
+        MOC: <input th:field="*{moc}" type="number" required><br>
+        POJEMNOŚĆ: <input th:field="*{pojemnosc}" type="number" required><br>
+        CENA: <input th:field="*{cena}" type="number" required><br>
+        <input type="submit" value="DODAJ">
+    </form>
+    <button onclick="window.location.href='/'">Główna</button>
+</body>
+</html>

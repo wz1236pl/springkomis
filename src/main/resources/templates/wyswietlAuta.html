@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>
+        Samochody w komisie
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>     
+  </head>
+  <body>
+    <div class="container" width=100% >
+        <div class="table">
+            <table class="table">          
+                <thead>
+                    <tr  class="active">
+                        <th>ID</th>                                                   
+                        <th>VIN</th>                                                   
+                        <th>NR_REJ</th>                                                   
+                        <th>MARKA</th>                                                   
+                        <th>MODEL</th>                                                   
+                        <th>TYP</th>                                                   
+                        <th>PALIWO</th>                                                   
+                        <th>KOLOR</th>                                                   
+                        <th>ROK</th>                                                   
+                        <th>PRZEBIEG</th>                                                   
+                        <th>MOC</th>                                                   
+                        <th>POJEMNOŚĆ</th>                                                   
+                        <th>CENA</th>                                                   
+                        <th>DATA_DOD</th>                                                   
+                    </tr>
+                    
+                </thead>
+                <tbody>                       
+                    <tr th:each ="a : ${autaOut}">               
+                        <td> <b  th:utext="${a.id}"></b> </td>                        
+                        <td> <b  th:utext="${a.vin}"></b> </td>                        
+                        <td> <b  th:utext="${a.nrRej}"></b> </td>                        
+                        <td> <b  th:utext="${a.marka}"></b> </td>                        
+                        <td> <b  th:utext="${a.model}"></b> </td>                        
+                        <td> <b  th:utext="${a.typ}"></b> </td>                        
+                        <td> <b  th:utext="${a.paliwo}"></b> </td>                        
+                        <td> <b  th:utext="${a.kolor}"></b> </td>                        
+                        <td> <b  th:utext="${a.rok}"></b> </td>                        
+                        <td> <b  th:utext="${a.przebieg}"></b> </td>                        
+                        <td> <b  th:utext="${a.moc}"></b> </td>                        
+                        <td> <b  th:utext="${a.pojemnosc}"></b> </td>
+                        <td> <b  th:utext="${a.cena}"></b> </td>                        
+                        <td> <b  th:utext="${a.dataDodania}"></b> </td>                        
+                    </tr>
+                </tbody>          
+            </table>    
+        </div>
+    </div>
+    <button onclick="window.location.href='/'">Główna</button>
+  </body>
+</html>
