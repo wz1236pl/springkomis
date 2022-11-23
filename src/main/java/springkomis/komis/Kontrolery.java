@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import springkomis.komis.klasy.Samochod;
 import springkomis.komis.repo.SamochodRepo;
@@ -27,7 +28,6 @@ public class Kontrolery {
     @PostMapping(value = "/dodajAuto")
     public String dodajAuto(Model model, Samochod autoIn){
         Date teraz = new Date(System.currentTimeMillis());
-        System.out.println(teraz);
         autoIn.setDataDodania(teraz);        
         sRepo.save(autoIn);
 
@@ -39,7 +39,17 @@ public class Kontrolery {
         model.addAttribute("autaOut", sRepo.findAll());
         return "wyswietlAuta";
     }
- 
+    
+    @GetMapping(value = "/cenaXY")
+    public String cenaInXY( @RequestParam(value="cenaX", defaultValue="0") String cenaX,
+                            @RequestParam(value="cenaY", defaultValue="0") String cenaY,
+                            Model model){
+        Double X = Double.parseDouble(cenaX); 
+        Double Y = Double.parseDouble(cenaY);
+        model.addAttribute("autaOut", sRepo.findByCenaBetween(X, Y));
+        return "wyswietlAuta";
+    }
+
 
     @ExceptionHandler
     public String handlerException(Model model,Exception exception)

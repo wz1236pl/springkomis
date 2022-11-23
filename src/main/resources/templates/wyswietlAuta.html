@@ -1,17 +1,20 @@
 <html>
   <head>
-    <title>
-        Samochody w komisie
-    </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>     
+    <title> Samochody w komisie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
   </head>
   <body>
-    <div class="container" width=100% >
-        <div class="table">
-            <table class="table">          
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <div class="p-3 mb-1 bg-transparent text-dark">
+    <div class="container">
+        <div class="table table-responsive">
+            <table class="table table-dark table-striped table-hover caption-top" >
+                <caption>Lista samochodów w komisie</caption>          
                 <thead>
-                    <tr  class="active">
-                        <th>ID</th>                                                   
+                    <tr class="active">
+                        <th>#</th>                                                   
                         <th>VIN</th>                                                   
                         <th>NR_REJ</th>                                                   
                         <th>MARKA</th>                                                   
@@ -24,31 +27,51 @@
                         <th>MOC</th>                                                   
                         <th>POJEMNOŚĆ</th>                                                   
                         <th>CENA</th>                                                   
-                        <th>DATA_DOD</th>                                                   
+                        <th>UBEZPIECZENIE</th>
+                        <th>PRZEGLĄD</th>                                              
+                        <th>DODANY</th>     
                     </tr>
                     
                 </thead>
                 <tbody>                       
                     <tr th:each ="a : ${autaOut}">               
-                        <td> <b  th:utext="${a.id}"></b> </td>                        
-                        <td> <b  th:utext="${a.vin}"></b> </td>                        
-                        <td> <b  th:utext="${a.nrRej}"></b> </td>                        
-                        <td> <b  th:utext="${a.marka}"></b> </td>                        
-                        <td> <b  th:utext="${a.model}"></b> </td>                        
-                        <td> <b  th:utext="${a.typ}"></b> </td>                        
-                        <td> <b  th:utext="${a.paliwo}"></b> </td>                        
-                        <td> <b  th:utext="${a.kolor}"></b> </td>                        
-                        <td> <b  th:utext="${a.rok}"></b> </td>                        
-                        <td> <b  th:utext="${a.przebieg}"></b> </td>                        
-                        <td> <b  th:utext="${a.moc}"></b> </td>                        
-                        <td> <b  th:utext="${a.pojemnosc}"></b> </td>
-                        <td> <b  th:utext="${a.cena}"></b> </td>                        
-                        <td> <b  th:utext="${a.dataDodania}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Id pojazdu">             <b  th:utext="${a.id}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer VIN">              <b  th:utext="${a.vin}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer rejestracyjny">    <b  th:utext="${a.nrRej}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Marka pojazdu">          <b  th:utext="${a.marka}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Model pojazdu">          <b  th:utext="${a.model}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Typ pojazdu">            <b  th:utext="${a.typ}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rodzaj paliwa">          <b  th:utext="${a.paliwo}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kolor pojazdu">          <b  th:utext="${a.kolor}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rok produkcji">          <b  th:utext="${a.rok}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Przebieg">               <b  th:utext="${a.przebieg}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Moc">                    <b  th:utext="${a.moc}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pojemność">              <b  th:utext="${a.pojemnosc}"></b> </td>
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cena">                   <b  th:utext="${a.cena}"></b> </td>
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data ubezpieczenia">     <b  th:utext="${a.dataUbezpieczenia}"></b> </td>
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data przeglad">          <b  th:utext="${a.dataPrzeglad}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data dodania">           <b  th:utext="${a.dataDodania}"></b> </td>                        
                     </tr>
                 </tbody>          
             </table>    
         </div>
+        <button  class="btn btn-secondary" onclick="window.location.href='/'">Główna</button>
     </div>
-    <button onclick="window.location.href='/'">Główna</button>
+    </div>
+    
   </body>
 </html>
+
+<style>
+body{
+    min-height: 100vh;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #303030;
+    }
+caption{
+    color: white;
+    }
+</style>
+  

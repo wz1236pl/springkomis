@@ -2,13 +2,48 @@
 <html lang="pl">
 <head>
   <meta charset="utf-8">
-  <title>Strona rezerwacji miejsca w hotelu</title>
-  <meta name="description" content="Description Goes Here">
-  <link rel="stylesheet" href="style.css">
+  <title>Komis samochodowy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> 
 </head>
 <body>
-    <button onclick="window.location.href='/dodajAuto'">Dodaj samochód</button>
-    <button onclick="window.location.href='/wyswietAuto'">Wyswietl samochód</button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <button onclick="window.location.href='/dodajAuto'" class="btn btn-secondary">Dodaj samochód</button>
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#cenaXY">Cena X -> Y</button>
+    <button onclick="window.location.href='/wyswietlAuta'" class="btn btn-secondary">Wyswietl samochód</button>
     <br>
   </body>
 </html>
+
+<div class="modal fade" id="cenaXY" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Samochody z przedziału cenowego</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text">OD: </span>
+          <input id="cenaX" type="number" class="form-control" required>
+        </div><div class="input-group mb-3">
+          <span class="input-group-text">DO: </span>
+          <input id="cenaY" type="number" class="form-control" required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/cenaXY?cenaX='+document.getElementById('cenaX').value+'&cenaY='+document.getElementById('cenaY').value">Wyświetl</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+body{
+  min-height: 100vh;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background-color: #303030;
+  }
+</style>

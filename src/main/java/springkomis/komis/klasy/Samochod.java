@@ -25,12 +25,14 @@ public class Samochod {
     private Double moc;
     private Double pojemnosc;
     private Double cena;
+    private Date dataUbezpieczenia;
+    private Date dataPrzeglad;
     private Date dataDodania;
 
     public Samochod() {}
 
     public Samochod(Integer id, String vin, String nrRej, String marka, String model, String typ, String paliwo,
-            String kolor, int rok, int przebieg, Double moc, Double pojemnosc, Double cena) {
+            String kolor, int rok, int przebieg, Double moc, Double pojemnosc, Double cena, Date dataUbezpieczenia, Date dataPrzeglad) {
         this.id = id;
         this.vin = vin;
         this.nrRej = nrRej;
@@ -44,6 +46,8 @@ public class Samochod {
         this.moc = moc;
         this.pojemnosc = pojemnosc;
         this.cena = cena;
+        this.dataUbezpieczenia = dataUbezpieczenia;
+        this.dataPrzeglad = dataPrzeglad;
     }
 
     public Integer getId() {
@@ -158,11 +162,28 @@ public class Samochod {
         this.dataDodania = dataDodania;
     }
 
+    public Date getDataUbezpieczenia() {
+        return dataUbezpieczenia;
+    }
+
+    public void setDataUbezpieczenia(Date dataUbezpieczenia) {
+        this.dataUbezpieczenia = dataUbezpieczenia;
+    }
+
+    public Date getDataPrzeglad() {
+        return dataPrzeglad;
+    }
+
+    public void setDataPrzeglad(Date dataPrzeglad) {
+        this.dataPrzeglad = dataPrzeglad;
+    }
+
     @Override
     public String toString() {
         return "Samochod [id=" + id + ", vin=" + vin + ", nrRej=" + nrRej + ", marka=" + marka + ", model=" + model
                 + ", typ=" + typ + ", paliwo=" + paliwo + ", kolor=" + kolor + ", rok=" + rok + ", przebieg=" + przebieg
-                + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataDodania=" + dataDodania + "]";
+                + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataUbezpieczenie="
+                + dataUbezpieczenia + ", dataPrzeglad=" + dataPrzeglad + ", dataDodania=" + dataDodania + "]";
     }
 
 }
