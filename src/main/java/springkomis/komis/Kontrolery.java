@@ -27,8 +27,14 @@ public class Kontrolery {
 
     @PostMapping(value = "/dodajAuto")
     public String dodajAuto(Model model, Samochod autoIn){
+        System.out.println(autoIn.getDataPrzeglad());
+        System.out.println(autoIn.getDataUbezpieczenia());
+        
         Date teraz = new Date(System.currentTimeMillis());
+        
         autoIn.setDataDodania(teraz);        
+        autoIn.setDataPrzeglad(teraz);        
+        autoIn.setDataUbezpieczenia(teraz);        
         sRepo.save(autoIn);
 
         return "redirect:/wyswietlAuta";

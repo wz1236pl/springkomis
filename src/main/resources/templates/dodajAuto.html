@@ -15,7 +15,7 @@
           <div class="col">
             <div class="input-group mb-3">
               <span class="input-group-text">VIN</span>
-              <input th:field="*{vin}" type="text" class="form-control" required>
+              <input th:field="*{vin}" type="text" minlength="17" maxlength="17" class="form-control" required>
             </div>
           </div>
           <div class="col">
@@ -59,7 +59,6 @@
               <option th:value="Diesel">Diesel</option>
               <option th:value="Benzyna">Benzyna</option>
               <option th:value="LPG">Benzyna+LPG</option>
-              <option th:value="EV">EV</option>
             </select>
           </div>
         </div> 
@@ -74,7 +73,7 @@
         <div class="col">
           <div class="input-group mb-3">
             <span class="input-group-text">ROK</span>
-            <input th:field="*{rok}" type="number" class="form-control" required>
+            <input th:field="*{rok}" type="number" min="0" class="form-control" required>
           </div>
         </div>
       </div>
@@ -82,13 +81,13 @@
         <div class="col">
           <div class="input-group mb-3">
             <span  class="input-group-text">PRZEBIEG</span>
-            <input th:field="*{przebieg}" type="number" class="form-control" required>
+            <input th:field="*{przebieg}" type="number" min="0" class="form-control" required>
           </div>
         </div>
         <div class="col">
           <div class="input-group mb-3">
             <span class="input-group-text">MOC</span>
-            <input th:field="*{moc}" type="number" class="form-control" required>
+            <input th:field="*{moc}" type="number" min="0" class="form-control" required>
           </div>
         </div>
       </div>
@@ -96,13 +95,13 @@
         <div class="col">
           <div class="input-group mb-3">
             <span class="input-group-text">POJEMNOŚĆ</span>
-            <input th:field="*{pojemnosc}" type="number" class="form-control" required>
+            <input th:field="*{pojemnosc}" type="number"min="0" class="form-control" required>
           </div>
         </div>
         <div class="col">
           <div class="input-group mb-3">
             <span class="input-group-text">CENA</span>
-            <input th:field="*{cena}" type="number" class="form-control" required>
+            <input th:field="*{cena}" type="number" min="0" class="form-control" required>
           </div>
         </div>
       </div>
@@ -146,5 +145,13 @@ body{
   border-radius: 10pt; 
   margin: 10pt; 
   padding: 10pt; 
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
 }
 </style>

@@ -1,4 +1,0 @@
-2022-11-23 18:01:12 jdbc[33]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabela "SAMOCHODSAMOCHOD" nie istnieje
-Table "SAMOCHODSAMOCHOD" not found; SQL statement:
-delete from samochodSAMOCHOD [42102-214]

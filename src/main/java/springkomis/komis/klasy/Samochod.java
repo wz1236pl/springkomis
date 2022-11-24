@@ -2,10 +2,13 @@ package springkomis.komis.klasy;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.Columns;
 
 
 @Entity
@@ -22,17 +25,27 @@ public class Samochod {
     private String kolor;
     private int rok;
     private int przebieg;
-    private Double moc;
-    private Double pojemnosc;
-    private Double cena;
+    private int moc;
+    private int pojemnosc;
+    private int cena;
+    @Column(nullable = true)
     private Date dataUbezpieczenia;
+    @Column(nullable = true)
     private Date dataPrzeglad;
     private Date dataDodania;
 
-    public Samochod() {}
+    public Samochod() {
+        this.rok = 0;
+        this.przebieg = 0;
+        this.moc = 0;
+        this.pojemnosc = 0;
+        this.cena = 0;
+        this.dataUbezpieczenia = null;
+        this.dataPrzeglad = null;
+    }
 
     public Samochod(Integer id, String vin, String nrRej, String marka, String model, String typ, String paliwo,
-            String kolor, int rok, int przebieg, Double moc, Double pojemnosc, Double cena, Date dataUbezpieczenia, Date dataPrzeglad) {
+            String kolor, int rok, int przebieg, int moc, int pojemnosc, int cena, Date dataUbezpieczenia, Date dataPrzeglad) {
         this.id = id;
         this.vin = vin;
         this.nrRej = nrRej;
@@ -130,27 +143,27 @@ public class Samochod {
         this.przebieg = przebieg;
     }
 
-    public Double getMoc() {
+    public int getMoc() {
         return moc;
     }
 
-    public void setMoc(Double moc) {
+    public void setMoc(int moc) {
         this.moc = moc;
     }
 
-    public Double getPojemnosc() {
+    public int getPojemnosc() {
         return pojemnosc;
     }
 
-    public void setPojemnosc(Double pojemnosc) {
+    public void setPojemnosc(int pojemnosc) {
         this.pojemnosc = pojemnosc;
     }
 
-    public Double getCena() {
+    public int getCena() {
         return cena;
     }
 
-    public void setCena(Double cena) {
+    public void setCena(int cena) {
         this.cena = cena;
     }
 
@@ -167,7 +180,7 @@ public class Samochod {
     }
 
     public void setDataUbezpieczenia(Date dataUbezpieczenia) {
-        this.dataUbezpieczenia = dataUbezpieczenia;
+            this.dataUbezpieczenia = dataUbezpieczenia;
     }
 
     public Date getDataPrzeglad() {
@@ -182,8 +195,10 @@ public class Samochod {
     public String toString() {
         return "Samochod [id=" + id + ", vin=" + vin + ", nrRej=" + nrRej + ", marka=" + marka + ", model=" + model
                 + ", typ=" + typ + ", paliwo=" + paliwo + ", kolor=" + kolor + ", rok=" + rok + ", przebieg=" + przebieg
-                + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataUbezpieczenie="
+                + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataUbezpieczenia="
                 + dataUbezpieczenia + ", dataPrzeglad=" + dataPrzeglad + ", dataDodania=" + dataDodania + "]";
     }
+
+  
 
 }
