@@ -19,7 +19,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Samochody z przedziału cenowego</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="input-group mb-3">
@@ -44,15 +44,22 @@ body{
   display: flex; 
   align-items: center; 
   justify-content: center; 
+  color: rgb(190, 190, 190);
   background-color: #303030;
   }
+.modal-content{
+  color: rgb(190, 190, 190);
+  background: #303030;
+}
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+  margin: 0;
+  -webkit-appearance: none;
+          appearance: none;  
 }
 input[type=number] {
   -moz-appearance: textfield;
+       appearance: textfield;
 }
 
 </style>
