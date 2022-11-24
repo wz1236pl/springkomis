@@ -31,10 +31,7 @@ public class Kontrolery {
         System.out.println(autoIn.getDataUbezpieczenia());
         
         Date teraz = new Date(System.currentTimeMillis());
-        
-        autoIn.setDataDodania(teraz);        
-        autoIn.setDataPrzeglad(teraz);        
-        autoIn.setDataUbezpieczenia(teraz);        
+        autoIn.setDataDodania(teraz);               
         sRepo.save(autoIn);
 
         return "redirect:/wyswietlAuta";
