@@ -21,7 +21,6 @@ public class Kontrolery {
     @GetMapping(value = "/dodajAuto")
     public String dodajAuto(Model model){
         model.addAttribute("autoIn", new Samochod());
-
         return "dodajAuto";
     }
 
@@ -30,23 +29,21 @@ public class Kontrolery {
         Date teraz = new Date(System.currentTimeMillis());
         autoIn.setDataDodania(teraz);               
         sRepo.save(autoIn);
-
         return "redirect:/wyswietlAuta";
     }
 
     @GetMapping(value = "/edytujAuto")
     public String edytuj(   @RequestParam(value="ID", defaultValue="0") String ID,
                             Model model){
-        System.out.println(ID);
         Integer id = Integer.parseInt(ID);
         model.addAttribute("autoEdit", sRepo.findById(id));
         return "editAuto";
     }
 
     @PostMapping(value = "/edytujAuto")
-    public String edyString(Model model, Samochod samochod){
-        System.out.println(samochod);
-        return"";
+    public String edyString(Model model, Samochod a){
+        sRepo.save(a);
+        return"redirect:/wyswietlAuta";
     }
 
     @GetMapping(value = "/wyswietlAuta")
@@ -66,6 +63,7 @@ public class Kontrolery {
     }
 
 
+    
     @ExceptionHandler
     public String handlerException(Model model,Exception exception)
     {
