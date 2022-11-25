@@ -27,14 +27,26 @@ public class Kontrolery {
 
     @PostMapping(value = "/dodajAuto")
     public String dodajAuto(Model model, Samochod autoIn){
-        System.out.println(autoIn.getDataPrzeglad());
-        System.out.println(autoIn.getDataUbezpieczenia());
-        
         Date teraz = new Date(System.currentTimeMillis());
         autoIn.setDataDodania(teraz);               
         sRepo.save(autoIn);
 
         return "redirect:/wyswietlAuta";
+    }
+
+    @GetMapping(value = "/edytujAuto")
+    public String edytuj(   @RequestParam(value="ID", defaultValue="0") String ID,
+                            Model model){
+        System.out.println(ID);
+        Integer id = Integer.parseInt(ID);
+        model.addAttribute("autoEdit", sRepo.findById(id));
+        return "editAuto";
+    }
+
+    @PostMapping(value = "/edytujAuto")
+    public String edyString(Model model, Samochod samochod){
+        System.out.println(samochod);
+        return"";
     }
 
     @GetMapping(value = "/wyswietlAuta")
