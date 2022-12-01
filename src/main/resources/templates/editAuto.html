@@ -45,11 +45,11 @@
           <div class="input-group mb-3">
            <select th:field="*{typ}" class="form-select" aria-label="typ" required>
              <option th:value="TYP" th:disabled hidden>TYP</option>
-             <option th:value="Sedan">Sedan</option>
-             <option th:value="Kombi">Kombi</option>
-             <option th:value="Hatchback">Hatchback </option>
-             <option th:value="SUV">SUV</option>
-             <option th:value="Coupe">Coupe</option>
+             <option th:value="Sedan">TYP: Sedan</option>
+             <option th:value="Kombi">TYP: Kombi</option>
+             <option th:value="Hatchback">TYP: Hatchback </option>
+             <option th:value="SUV">TYP: SUV</option>
+             <option th:value="Coupe">TYP: Coupe</option>
            </select>
           </div>
         </div>
@@ -57,9 +57,9 @@
           <div class="input-group mb-3">
             <select th:field="*{paliwo}" class="form-select" aria-label="paliwo" required>
               <option th:value="PALIWO" th:disabled hidden>PALIWO</option>
-              <option th:value="Diesel">Diesel</option>
-              <option th:value="Benzyna">Benzyna</option>
-              <option th:value="LPG">Benzyna+LPG</option>
+              <option th:value="Diesel">PALIWO: Diesel</option>
+              <option th:value="Benzyna">PALIWO: Benzyna</option>
+              <option th:value="LPG">PALIWO: Benzyna+LPG</option>
             </select>
           </div>
         </div> 
@@ -121,6 +121,14 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-6">
+          <div class="input-group mb-3">
+            <select th:field="*{sprzedany}" class="form-select" aria-label="sprzedany" required>
+              <option th:value=0 >Sprzedany: Tak</option>
+              <option th:value=1 >Sprzedany: Nie</option>
+            </select>
+          </div>
+        </div>
         <div class="col-6"> 
           <div class="d-grid gap-2 d-md-block justify-content-md-end">
             <input type="submit" value="Edytuj" class="btn btn-success col-5">

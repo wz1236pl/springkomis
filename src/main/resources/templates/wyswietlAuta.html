@@ -32,6 +32,7 @@
                         <th>UBEZPIECZENIE</th>
                         <th>PRZEGLĄD</th>                                              
                         <th>DODANY</th>     
+                        <th>SPRZEDANY</th>     
                     </tr>
                     
                 </thead>
@@ -41,11 +42,6 @@
                             <a th:href="'edytujAuto?ID='+${a.id}" >
                                 <button type="button" class="btn btn-danger btn-floating" >
                                     <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </a>
-                            <a th:href="'usunAuto?ID='+${a.id}" >
-                                <button type="button" class="btn btn-danger btn-floating" >
-                                    <i class="bi bi-x-square"></i>
                                 </button>
                             </a>
                         </td>              
@@ -65,6 +61,7 @@
                         <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data ubezpieczenia">     <b  th:utext="${a.dataUbezpieczenia}"></b> </td>
                         <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data przeglad">          <b  th:utext="${a.dataPrzeglad}"></b> </td>                        
                         <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data dodania">           <b  th:utext="${a.dataDodania}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="0 = niesprzedany | 1 = Sprzedany ">           <b  th:utext="${a.sprzedany}"></b> </td>                        
                     </tr>
                 </tbody>          
             </table>    

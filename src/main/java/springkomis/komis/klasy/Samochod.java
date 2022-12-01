@@ -32,6 +32,7 @@ public class Samochod {
     @Column(nullable = true)
     private Date dataPrzeglad;
     private Date dataDodania;
+    private int sprzedany; 
 
     public Samochod() {
         this.rok = 0;
@@ -41,6 +42,7 @@ public class Samochod {
         this.cena = 0;
         this.dataUbezpieczenia = null;
         this.dataPrzeglad = null;
+        this.sprzedany=0;
     }
 
     public Samochod(Integer id, String vin, String nrRej, String marka, String model, String typ, String paliwo,
@@ -190,14 +192,23 @@ public class Samochod {
         this.dataPrzeglad = dataPrzeglad;
     }
 
+    public int getSprzedany() {
+        return sprzedany;
+    }
+
+    public void setSprzedany(int sprzedany) {
+        this.sprzedany = sprzedany;
+    }
+
     @Override
     public String toString() {
         return "Samochod [id=" + id + ", vin=" + vin + ", nrRej=" + nrRej + ", marka=" + marka + ", model=" + model
                 + ", typ=" + typ + ", paliwo=" + paliwo + ", kolor=" + kolor + ", rok=" + rok + ", przebieg=" + przebieg
                 + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataUbezpieczenia="
-                + dataUbezpieczenia + ", dataPrzeglad=" + dataPrzeglad + ", dataDodania=" + dataDodania + "]";
+                + dataUbezpieczenia + ", dataPrzeglad=" + dataPrzeglad + ", dataDodania=" + dataDodania + ", sprzedany="
+                + sprzedany + "]";
     }
 
-  
-
+    
+   
 }

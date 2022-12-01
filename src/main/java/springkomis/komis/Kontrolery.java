@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springkomis.komis.klasy.Samochod;
 import springkomis.komis.repo.SamochodRepo;
 
+//  TO DO:
+//  wybieranie samochodów z określonymi argumentami
+//  alerty o wygasającym przeglądzie lub ubezpieczeniu 
+//  dodawanie auta z nullem jako data (try 00.00.0000)
+//  
+
 @Controller
 public class Kontrolery {
     @Autowired
