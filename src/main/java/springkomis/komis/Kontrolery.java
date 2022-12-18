@@ -24,13 +24,13 @@ public class Kontrolery {
     @Autowired
     private SamochodRepo sRepo;
 
-    @GetMapping(value = "/dodajAuto")
+    @GetMapping(value = "/admin/dodajAuto")
     public String dodajAuto(Model model){
         model.addAttribute("autoIn", new Samochod());
         return "dodajAuto";
     }
 
-    @PostMapping(value = "/dodajAuto")
+    @PostMapping(value = "/admin/dodajAuto")
     public String dodajAuto(Model model, Samochod autoIn){
         Date teraz = new Date(System.currentTimeMillis());
         autoIn.setDataDodania(teraz);               
@@ -38,7 +38,7 @@ public class Kontrolery {
         return "redirect:/wyswietlAuta";
     }
 
-    @GetMapping(value = "/edytujAuto")
+    @GetMapping(value = "/admin/edytujAuto")
     public String edytuj(   @RequestParam(value="ID", defaultValue="0") String ID,
                             Model model){
         Integer id = Integer.parseInt(ID);
@@ -46,7 +46,7 @@ public class Kontrolery {
         return "editAuto";
     }
 
-    @PostMapping(value = "/edytujAuto")
+    @PostMapping(value = "/admin/edytujAuto")
     public String edyString(Model model, Samochod a){
         sRepo.save(a);
         return"redirect:/wyswietlAuta";
