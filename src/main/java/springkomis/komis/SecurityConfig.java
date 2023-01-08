@@ -23,6 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             .build();
             return new InMemoryUserDetailsManager(admin);
     }
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         
