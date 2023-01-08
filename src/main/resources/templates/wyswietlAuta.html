@@ -8,63 +8,39 @@
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <div class="p-3 mb-1 bg-transparent text-dark">
-    <div class="container">
-        <div class="table table-responsive">
-            <table class="table table-dark table-striped table-hover caption-top" >
-                <caption>Lista samochodów w komisie</caption>          
-                <thead>
-                    <tr class="active">
-                        <th>EDIT</th>
-                        <th>#</th>                                                   
-                        <th>VIN</th>                                                   
-                        <th>NR_REJ</th>                                                   
-                        <th>MARKA</th>                                                   
-                        <th>MODEL</th>                                                   
-                        <th>TYP</th>                                                   
-                        <th>PALIWO</th>                                                   
-                        <th>KOLOR</th>                                                   
-                        <th>ROK</th>                                                   
-                        <th>PRZEBIEG</th>                                                   
-                        <th>MOC</th>                                                   
-                        <th>POJEMNOŚĆ</th>                                                   
-                        <th>CENA</th>                                                   
-                        <th>UBEZPIECZENIE</th>
-                        <th>PRZEGLĄD</th>                                              
-                        <th>DODANY</th>     
-                        <th>SPRZEDANY</th>     
-                    </tr>
-                    
-                </thead>
-                <tbody>                       
-                    <tr th:each ="a : ${autaOut}" > 
-                        <td style="float: left;">
-                            <a th:href="'admin/edytujAuto?ID='+${a.id}" >
-                                <button type="button" class="btn btn-danger btn-floating" >
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
-                            </a>
-                        </td>              
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Id pojazdu">             <b  th:utext="${a.id}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer VIN">              <b  th:utext="${a.vin}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer rejestracyjny">    <b  th:utext="${a.nrRej}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Marka pojazdu">          <b  th:utext="${a.marka}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Model pojazdu">          <b  th:utext="${a.model}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Typ pojazdu">            <b  th:utext="${a.typ}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rodzaj paliwa">          <b  th:utext="${a.paliwo}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kolor pojazdu">          <b  th:utext="${a.kolor}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rok produkcji">          <b  th:utext="${a.rok}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Przebieg">               <b  th:utext="${a.przebieg}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Moc">                    <b  th:utext="${a.moc}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pojemność">              <b  th:utext="${a.pojemnosc}"></b> </td>
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cena">                   <b  th:utext="${a.cena}"></b> </td>
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data ubezpieczenia">     <b  th:utext="${a.dataUbezpieczenia}"></b> </td>
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data przeglad">          <b  th:utext="${a.dataPrzeglad}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data dodania">           <b  th:utext="${a.dataDodania}"></b> </td>                        
-                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="0 = niesprzedany | 1 = Sprzedany ">           <b  th:utext="${a.sprzedany}"></b> </td>                        
-                    </tr>
-                </tbody>          
-            </table>    
+    <div class="p-3 mb-1 bg-transparent text-dark w-100">
+    <div class="container w-auto" >
+        <div class="table table-responsive mw-100">
+            <table>
+                <div class="card bg-secondary w-100 mt-2" th:each=" a : ${autaOut}">
+                    <div class="card-body">
+                        <div class="row flex-sm-nowrap ">
+                            <div class="col-sm  d-flex justify-content-sm-start">
+                                <h4 class="card-title" ><label th:text="${a.marka}+' '+${a.model}"></label> <label style="color:#5e008c" th:text="${a.cena}+'zł'"></label></h4>
+                            </div>
+                        </div>
+                        <div class="row fs-5">
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Przebieg: '+${a.przebieg}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Rok: '+${a.rok}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Moc: '+${a.moc}"></Label></div>    
+                        </div>
+                        <div class="row fs-5">
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Pojemność: '+${a.pojemnosc}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Paliwo: '+${a.paliwo}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Kolor: '+${a.kolor}"></Label></div>    
+                        </div>
+                        <div class="row fs-5">
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'VIN: '+${a.vin}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Nr. rejestracyjny: '+${a.nrRej}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Typ: '+${a.typ}"></Label></div>    
+                        </div><div class="row fs-5">
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Ubezpieczenie: '+${a.dataUbezpieczenia}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Przegląd: '+${a.dataPrzeglad}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Dodano: '+${a.dataDodania}"></Label></div>    
+                        </div>
+                    </div>
+                </div>
+            </table>
         </div>
         <button  class="btn btn-secondary" onclick="window.location.href='/'">Główna</button>
     </div>

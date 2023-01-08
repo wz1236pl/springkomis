@@ -57,6 +57,11 @@ public class Kontrolery {
         model.addAttribute("autaOut", sRepo.findAll());
         return "wyswietlAuta";
     }
+    @GetMapping(value = "/admin/wyswietlAuta")
+    public String wyswietlAutaPracownik(Model model){
+        model.addAttribute("autaOut", sRepo.findAll());
+        return "wyswietlAutaPracownik";
+    }
     
     @GetMapping(value = "/cenaXY")
     public String cenaInXY( @RequestParam(value="cenaX", defaultValue="0") String cenaX,
