@@ -84,7 +84,7 @@ public class Kontrolery {
     public String addimgpost(@RequestParam("image")MultipartFile file,int id) throws IllegalStateException, IOException{
         System.out.println(file);
         System.out.println(id);
-        String path = System.getProperty("user.dir")+"/data/users/"+id;
+        String path = System.getProperty("user.dir")+"/data/cars/"+id;
         System.out.println(path);
         File theDir = new File(path);
             if (!theDir.exists()){
