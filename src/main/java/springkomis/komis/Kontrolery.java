@@ -84,20 +84,20 @@ public class Kontrolery {
     public String addimgpost(@RequestParam("image")MultipartFile file,int id) throws IllegalStateException, IOException{
         System.out.println(file);
         System.out.println(id);
-        // String path = System.getProperty("user.dir")+"/data/cars/"+id+"/";
-        // System.out.println(path);
-        // File theDir = new File(path);
-        //     if (!theDir.exists()){
-        //         theDir.mkdirs();
-        //         ImgUrl img = new ImgUrl(sRepo.findByIdIs(id),file.getOriginalFilename());
-        //         iRepo.save(img);
-        //         file.transferTo(new File(path+file.getOriginalFilename()));
-        //     }else{
-        //         ImgUrl img = new ImgUrl(sRepo.findByIdIs(id),file.getOriginalFilename());
-        //         iRepo.save(img);
-        //         System.out.println(theDir.getAbsolutePath());
-        //         file.transferTo(new File(path+file.getOriginalFilename()));
-        //     }
+        String path = System.getProperty("user.dir")+"/data/cars/"+id+"/";
+        System.out.println(path);
+        File theDir = new File(path);
+            if (!theDir.exists()){
+                theDir.mkdirs();
+                ImgUrl img = new ImgUrl(sRepo.findByIdIs(id),file.getOriginalFilename());
+                iRepo.save(img);
+                file.transferTo(new File(path+file.getOriginalFilename()));
+            }else{
+                ImgUrl img = new ImgUrl(sRepo.findByIdIs(id),file.getOriginalFilename());
+                iRepo.save(img);
+                System.out.println(theDir.getAbsolutePath());
+                file.transferTo(new File(path+file.getOriginalFilename()));
+            }
         return "redirect:/wyswietlAuta";
     }
 
