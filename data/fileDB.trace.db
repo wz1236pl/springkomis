@@ -1,0 +1,8 @@
+2023-01-09 23:24:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "DELETE FROM IMGURL samochod_id [*]= 1"
+Syntax error in SQL statement "DELETE FROM IMGURL samochod_id [*]= 1"; SQL statement:
+DELETE FROM IMGURL samochod_id = 1 [42000-214]
+2023-01-09 23:46:50 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "[*]SAMOCHOD"; oczekiwano "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"
+Syntax error in SQL statement "[*]SAMOCHOD"; expected "SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+SAMOCHOD [42001-214]

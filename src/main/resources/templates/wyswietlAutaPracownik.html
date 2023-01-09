@@ -44,7 +44,30 @@
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </a>
-                        </td>              
+                            <button type="button" class="btn btn-danger btn-floating" data-bs-toggle="modal" data-bs-target="#ImgPicker">
+                                <i class="bi bi-image"></i>
+                            </button>
+                        </td>
+                        <div class="modal fade" id="ImgPicker" tabindex="-1" role="dialog" aria-labelledby="ImgPicker" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content" style="color: rgb(190, 190, 190); background: #303030;">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Zdjęcia</h1>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                    <div class="modal-body">
+                                <form action="/addImg" method="post" enctype="multipart/form-data">
+                                        <input type="file" name="image" id="image" class="form-control-file">
+                                        <input type="hidden" name="id" th:value="${a.id}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                                        <input type="submit" class="btn btn-primary"></button>
+                                </form>
+                                    </div> 
+                              </div>
+                            </div>
+                        </div>
                         <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Id pojazdu">             <b  th:utext="${a.id}"></b> </td>                        
                         <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer VIN">              <b  th:utext="${a.vin}"></b> </td>                       
                         <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer rejestracyjny">    <b  th:utext="${a.nrRej}"></b> </td>                       
@@ -66,12 +89,14 @@
                 </tbody>          
             </table>
         </div>
-        <button  class="btn btn-secondary" onclick="window.location.href='/'">Główna</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">Główna</button>
     </div>
     </div>
     
   </body>
 </html>
+
+
 
 <style>
 body{
@@ -87,4 +112,5 @@ caption{
 :link { color: white; }
 :visited { color: white; }
 </style>
+
   

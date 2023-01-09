@@ -7,10 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-
+import java.util.ArrayList;
+import java.util.List;;
 
 @Entity
+@Table(name="samochod") 
 public class Samochod {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,7 +36,9 @@ public class Samochod {
     @Column(nullable = true)
     private Date dataPrzeglad;
     private Date dataDodania;
-    private int sprzedany; 
+    private int sprzedany;
+    @OneToMany(mappedBy = "samochod")
+    private List<ImgUrl> images = new ArrayList<ImgUrl>();
 
     public Samochod() {
         this.rok = 0;

@@ -30,6 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
             .antMatchers("/h2/**").permitAll()
             .antMatchers("/").permitAll()
+            .antMatchers("/**").permitAll()
             .antMatchers("/admin/**").hasAnyRole("ADMIN")
             .and()
             .formLogin()
@@ -39,7 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .logoutSuccessUrl("/")
                 .permitAll()
             .and()
-            .httpBasic();
+                .httpBasic()
+            .and()
+                .csrf().disable();
 
     }
     @Override
