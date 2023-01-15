@@ -57,11 +57,11 @@
                                 </div>
                                     <div class="modal-body">
                                 <form action="/addImg" method="post" enctype="multipart/form-data">
-                                        <input type="file" name="image" id="image" class="form-control-file">
+                                        <input type="file" accept="image/*" name="image" id="image" class="form-control-file">
                                         <input type="hidden" name="id" th:value="${a.id}">
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
                                         <input type="submit" class="btn btn-primary"></button>
                                 </form>
                                     </div> 

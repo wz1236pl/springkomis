@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -43,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .httpBasic()
             .and()
                 .csrf().disable();
-
     }
     @Override
     public void configure(WebSecurity web) throws Exception {

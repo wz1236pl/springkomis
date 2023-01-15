@@ -206,15 +206,21 @@ public class Samochod {
         this.sprzedany = sprzedany;
     }
 
+    public List<ImgUrl> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImgUrl> images) {
+        this.images = images;
+    }
+
     @Override
     public String toString() {
         return "Samochod [id=" + id + ", vin=" + vin + ", nrRej=" + nrRej + ", marka=" + marka + ", model=" + model
                 + ", typ=" + typ + ", paliwo=" + paliwo + ", kolor=" + kolor + ", rok=" + rok + ", przebieg=" + przebieg
                 + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataUbezpieczenia="
                 + dataUbezpieczenia + ", dataPrzeglad=" + dataPrzeglad + ", dataDodania=" + dataDodania + ", sprzedany="
-                + sprzedany + "]";
+                + sprzedany + ", images=" + images + "]";
     }
 
-    
-   
 }
