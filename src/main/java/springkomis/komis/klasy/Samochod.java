@@ -187,6 +187,7 @@ public class Samochod {
     }
 
     public void setDataUbezpieczenia(Date dataUbezpieczenia) {
+        if(dataUbezpieczenia==null){dataUbezpieczenia=null;};
             this.dataUbezpieczenia = dataUbezpieczenia;
     }
 

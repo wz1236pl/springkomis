@@ -33,15 +33,32 @@ public class Kontrolery {
 
     @GetMapping(value = "/admin/dodajAuto")
     public String dodajAuto(Model model){
-        model.addAttribute("autoIn", new Samochod());
+        // model.addAttribute("autoIn", new Samochod());
         return "dodajAuto";
     }
 
     @PostMapping(value = "/admin/dodajAuto")
-    public String dodajAuto(Model model, Samochod autoIn){
+    public String dodajAuto(Model model, Samochod auto, @RequestParam("zdj")MultipartFile[] files){
+        try{
         Date teraz = new Date(System.currentTimeMillis());
-        autoIn.setDataDodania(teraz);               
-        sRepo.save(autoIn);
+        auto.setDataDodania(teraz);   
+        if(auto.getDataPrzeglad().getTime()==-3600000){auto.setDataPrzeglad(null);}
+        if(auto.getDataUbezpieczenia().getTime()==-3600000){auto.setDataUbezpieczenia(null);}
+        Integer id = sRepo.save(auto).getId(); 
+       for (MultipartFile f : files) {
+        String path = System.getProperty("user.dir")+"\\data\\cars\\"+id+"\\";
+        File theDir = new File(path);
+            if (!theDir.exists()){
+                theDir.mkdirs();
+            }
+            ImgUrl img = new ImgUrl(sRepo.findByIdIs(id),path+f.getOriginalFilename());
+            iRepo.save(img);
+            f.transferTo(new File(path+f.getOriginalFilename()));
+       }
+    }catch(Exception e){
+        System.out.println(e.getMessage());
+    }
+        // sRepo.save(autoIn);
         return "redirect:/wyswietlAuta";
     }
 
