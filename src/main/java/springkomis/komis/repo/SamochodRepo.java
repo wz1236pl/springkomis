@@ -1,5 +1,6 @@
 package springkomis.komis.repo;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +14,9 @@ public interface SamochodRepo extends JpaRepository<Samochod, Integer> {
 
     List<Samochod> findAllBySprzedanyIs(int a);
    
+    // List<Samochod> findAllByDataPrzegladGreaterThanEqualAndDataPrzegladLessThanEqual(Date a, Date b);
 
+    List<Samochod> findAllByDataPrzegladBetweenOrDataUbezpieczeniaBetween(Date a, Date b, Date c, Date d);
 }
 
     //LISTA OPERATOROW DO TWORZENIA ZAPYTAN

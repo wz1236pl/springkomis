@@ -3,7 +3,6 @@ package springkomis.komis;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,9 @@ public class Kontrolery {
             model.addAttribute("autaOut", sRepo.findAllBySprzedanyIs(0));
             return "wyswietlAuta";
         }else{
+            Date a = new Date(System.currentTimeMillis()-86400000);
+            Date b = new Date(System.currentTimeMillis()+1209600000);
+            model.addAttribute("alert",sRepo.findAllByDataPrzegladBetweenOrDataUbezpieczeniaBetween(a,b,a,b));
             model.addAttribute("autaOut", sRepo.findAll());
             return"adminPage";
         }
