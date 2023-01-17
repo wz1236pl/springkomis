@@ -9,7 +9,9 @@ public interface SamochodRepo extends JpaRepository<Samochod, Integer> {
     
     Samochod findByIdIs(Integer id);
 
-    List<Samochod> findByCenaBetween(Double x, Double y);
+    List<Samochod> findByCenaBetween(Integer x, Integer y);
+
+   
 
 }
 

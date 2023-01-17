@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,8 +22,7 @@ import springkomis.komis.repo.SamochodRepo;
 //  TO DO:
 //  wybieranie samochodów z określonymi argumentami
 //  alerty o wygasającym przeglądzie lub ubezpieczeniu 
-//  dodawanie auta z nullem jako data (try 00.00.0000)
-//  
+
 
 @Controller
 public class Kontrolery {
@@ -31,9 +31,18 @@ public class Kontrolery {
     @Autowired
     private ImgUrlRepo iRepo;
 
+    @GetMapping(value = "/")
+    public String dodajAuto(Model model, Authentication auth){
+        if(auth==null){
+            model.addAttribute("autaOut", sRepo.findAll());
+            return "wyswietlAuta";
+        }else{
+            return"adminPage";
+        }
+    }
+
     @GetMapping(value = "/admin/dodajAuto")
     public String dodajAuto(Model model){
-        // model.addAttribute("autoIn", new Samochod());
         return "dodajAuto";
     }
 
@@ -91,8 +100,8 @@ public class Kontrolery {
     public String cenaInXY( @RequestParam(value="cenaX", defaultValue="0") String cenaX,
                             @RequestParam(value="cenaY", defaultValue="0") String cenaY,
                             Model model){
-        Double X = Double.parseDouble(cenaX); 
-        Double Y = Double.parseDouble(cenaY);
+        Integer X = Integer.parseInt(cenaX); 
+        Integer Y = Integer.parseInt(cenaY);
         model.addAttribute("autaOut", sRepo.findByCenaBetween(X, Y));
         return "wyswietlAuta";
     }
