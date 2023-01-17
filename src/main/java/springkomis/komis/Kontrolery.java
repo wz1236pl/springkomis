@@ -3,6 +3,8 @@ package springkomis.komis;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,13 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import springkomis.komis.klasy.ImgUrl;
 import springkomis.komis.klasy.Samochod;
+import springkomis.komis.klasy.Wyszukiwanie;
 import springkomis.komis.repo.ImgUrlRepo;
 import springkomis.komis.repo.SamochodRepo;
-
-//  TO DO:
-//  wybieranie samochodów z określonymi argumentami
-//  alerty o wygasającym przeglądzie lub ubezpieczeniu 
-
 
 @Controller
 public class Kontrolery {
@@ -34,11 +32,88 @@ public class Kontrolery {
     @GetMapping(value = "/")
     public String dodajAuto(Model model, Authentication auth){
         if(auth==null){
-            model.addAttribute("autaOut", sRepo.findAll());
+            model.addAttribute("szukaj",new Wyszukiwanie());
+            model.addAttribute("autaOut", sRepo.findAllBySprzedanyIs(0));
             return "wyswietlAuta";
         }else{
+            model.addAttribute("autaOut", sRepo.findAll());
             return"adminPage";
         }
+    }
+
+    @GetMapping(value = "/admin/home")
+    public String admin(Model model, Authentication auth){
+       return"redirect:/";
+    }
+
+    @PostMapping(value = "/szukaj")
+    public String szukajAuto(Model model, Wyszukiwanie szukaj){
+        List<Samochod> ListaAut = sRepo.findAll();
+        for(int i=0; i<ListaAut.size(); i++){
+            Samochod s = ListaAut.get(i);
+            if(szukaj.getPrzebiegOd()!=0){
+                if(szukaj.getPrzebiegOd()>s.getPrzebieg()){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(szukaj.getPrzebiegDo()!=0){
+                if(szukaj.getPrzebiegDo()<=s.getPrzebieg()){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(szukaj.getRokOd()!=0){
+                if(szukaj.getRokOd()>s.getRok()){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(szukaj.getRokDo()!=0){
+                if(szukaj.getRokDo()<=s.getRok()){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(szukaj.getMocOd()!=0){
+                if(szukaj.getMocOd()>s.getMoc()){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(szukaj.getMocDo()!=0){
+                if(szukaj.getMocDo()<=s.getMoc()){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(!szukaj.getPaliwo().equals("")){
+                if(!szukaj.getPaliwo().equals(s.getPaliwo())){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+            if(!szukaj.getTyp().equals("")){
+                if(!szukaj.getTyp().equals(s.getTyp())){
+                ListaAut.remove(s);
+                i--;
+                continue;
+                }
+            }
+        }
+
+        model.addAttribute("szukaj", szukaj);
+        model.addAttribute("autaOut", ListaAut);
+
+        System.out.println("szukaj : "+szukaj);
+        return "wyswietlAuta";
     }
 
     @GetMapping(value = "/admin/dodajAuto")
@@ -80,18 +155,22 @@ public class Kontrolery {
     }
 
     @PostMapping(value = "/admin/edytujAuto")
-    public String edyString(Model model, Samochod a){
-        sRepo.save(a);
+    public String edyString(Model model, Samochod auto){
+        if(auto.getDataPrzeglad().getTime()==-3600000){auto.setDataPrzeglad(null);}
+        if(auto.getDataUbezpieczenia().getTime()==-3600000){auto.setDataUbezpieczenia(null);}
+        sRepo.save(auto);
         return"redirect:/wyswietlAuta";
     }
 
     @GetMapping(value = "/wyswietlAuta")
     public String wyswietlAuta(Model model){
+        model.addAttribute("szukaj", new Wyszukiwanie());
         model.addAttribute("autaOut", sRepo.findAll());
         return "wyswietlAuta";
     }
     @GetMapping(value = "/admin/wyswietlAuta")
     public String wyswietlAutaPracownik(Model model){
+        model.addAttribute("szukaj", new Wyszukiwanie());
         model.addAttribute("autaOut", sRepo.findAll());
         return "wyswietlAutaPracownik";
     }

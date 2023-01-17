@@ -221,7 +221,7 @@ public class Samochod {
                 + ", typ=" + typ + ", paliwo=" + paliwo + ", kolor=" + kolor + ", rok=" + rok + ", przebieg=" + przebieg
                 + ", moc=" + moc + ", pojemnosc=" + pojemnosc + ", cena=" + cena + ", dataUbezpieczenia="
                 + dataUbezpieczenia + ", dataPrzeglad=" + dataPrzeglad + ", dataDodania=" + dataDodania + ", sprzedany="
-                + sprzedany + ", images=" + images + "]";
+                + sprzedany + "]";
     }
 
 }

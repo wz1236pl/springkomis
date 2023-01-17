@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body class="d-flex flex-column">
-    <nav class="navbar navbar-expand-lg navbar-light bg-success w-100 justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success w-100 justify-content-between ">
       <a class="navbar-brand mx-2" href="/"> <i class="bi bi-car-front-fill"></i> SmakowiteFurki</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,11 +19,98 @@
             <a class="nav-link" href="/"><i class="bi bi-house-door-fill"></i> Strona główna </a>
           </li>
           <li class="nav-item active mx-2">
+            <a class="nav-link" href="/admin/dodajAuto"><i class="bi bi-file-earmark-plus"></i> Dodaj furke </a>
+          </li>
+          <li class="nav-item active mx-2">
             <a class="nav-link" href="/logout"><i class="bi bi-box-arrow-in-right"></i> Wyloguj </a>
           </li>
         </ul>
       </div>
-    </nav>  
+    </nav>
+    <div class="p-3 mb-1 bg-transparent text-dark w-100">
+    <div class="container w-auto" >
+        <div class="table table-responsive mw-100">
+            <table class="table table-dark table-striped table-hover caption-top" >
+                <caption>Lista samochodów w komisie</caption>          
+                <thead>
+                    <tr class="active">
+                        <th>EDIT</th>
+                        <th>#</th>                                                   
+                        <th>VIN</th>                                                   
+                        <th>NR_REJ</th>                                                   
+                        <th>MARKA</th>                                                   
+                        <th>MODEL</th>                                                   
+                        <th>TYP</th>                                                   
+                        <th>PALIWO</th>                                                   
+                        <th>KOLOR</th>                                                   
+                        <th>ROK</th>                                                   
+                        <th>PRZEBIEG</th>                                                   
+                        <th>MOC</th>                                                   
+                        <th>POJEMNOŚĆ</th>                                                   
+                        <th>CENA</th>                                                   
+                        <th>UBEZPIECZENIE</th>
+                        <th>PRZEGLĄD</th>                                              
+                        <th>DODANY</th>     
+                        <th>SPRZEDANY</th>     
+                    </tr>
+                    
+                </thead>
+                <tbody>                       
+                    <tr th:each ="a : ${autaOut}" > 
+                        <td style="float: left;">
+                            <a th:href="'/admin/edytujAuto?ID='+${a.id}" >
+                                <button type="button" class="btn btn-danger btn-floating" >
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-floating" data-bs-toggle="modal" th:data-bs-target="'#ImgPicker'+${a.id}">
+                                <i class="bi bi-image"></i>
+                            </button>
+                        </td>
+                        <div class="modal fade" th:id="'ImgPicker'+${a.id}" tabindex="-1" role="dialog" aria-labelledby="ImgPicker" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content" style="color: rgb(190, 190, 190); background: #303030;">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Zdjęcia</h1>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                    <div class="modal-body">
+                                <form action="/addImg" method="post" enctype="multipart/form-data">
+                                        <input type="file" accept="image/*" name="image" id="image" class="form-control-file">
+                                        <input type="hidden" name="id" th:value="${a.id}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                                        <input type="submit" class="btn btn-primary"></button>
+                                </form>
+                                    </div> 
+                              </div>
+                            </div>
+                        </div>
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Id pojazdu">             <b  th:utext="${a.id}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer VIN">              <b  th:utext="${a.vin}"></b> </td>                       
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Numer rejestracyjny">    <b  th:utext="${a.nrRej}"></b> </td>                       
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Marka pojazdu">          <b  th:utext="${a.marka}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Model pojazdu">          <b  th:utext="${a.model}"></b> </td>                       
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Typ pojazdu">            <b  th:utext="${a.typ}"></b> </td>                      
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rodzaj paliwa">          <b  th:utext="${a.paliwo}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kolor pojazdu">          <b  th:utext="${a.kolor}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Rok produkcji">          <b  th:utext="${a.rok}"></b> </td>                   
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Przebieg">               <b  th:utext="${a.przebieg}"></b> </td>                       
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Moc">                    <b  th:utext="${a.moc}"></b> </td>                      
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Pojemność">              <b  th:utext="${a.pojemnosc}"></b> </td>
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Cena">                   <b  th:utext="${a.cena}"></b> </td>	
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data ubezpieczenia">     <b  th:utext="${a.dataUbezpieczenia}"></b> </td> 
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data przeglad">          <b  th:utext="${a.dataPrzeglad}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="Data dodania">           <b  th:utext="${a.dataDodania}"></b> </td>                        
+                        <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="0 = niesprzedany | 1 = Sprzedany ">           <b  th:utext="${a.sprzedany}"></b> </td>                        
+                    </tr>
+                </tbody>          
+            </table>
+        </div>
+    </div>
+    </div>
+    
   </body>
 </html>
 

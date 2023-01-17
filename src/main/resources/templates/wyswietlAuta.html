@@ -22,7 +22,7 @@
             <a class="nav-link" href="/"><i class="bi bi-house-door-fill"></i> Strona główna </a>
           </li>
           <li class="nav-item active mx-2">
-            <a class="nav-link" href="/login"><i class="bi bi-box-arrow-in-right"></i> Zaloguj </a>
+            <a class="nav-link" href="/admin/home"><i class="bi bi-box-arrow-in-right"></i> Zaloguj </a>
           </li>
         </ul>
       </div>
@@ -31,6 +31,90 @@
     <div class="container w-auto" >
         <div class="table table-responsive mw-100">
             <table>
+              <div class="card bg-secondary w-100 mt-2">
+                <div class="card-body">
+                    <div class="row flex-sm-nowrap d-flex flex-column ">
+                      <h4 class="card-title mb-3" ><label>Filtruj</label></h4>
+                        <div class="col-sm justify-content-sm-start">
+                            <form th:action="@{/szukaj}" th:object="${szukaj}"  method="post">
+                              <div class="d-flex flex-row gap-3">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Przebieg od: </span>
+                                  </div>
+                                  <input th:field="*{przebiegOd}" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Przebieg do: </span>
+                                  </div>
+                                  <input th:field="*{przebiegDo}" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                              </div>
+                              <div class="d-flex flex-row gap-3">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Rok od: </span>
+                                  </div>
+                                  <input th:field="*{rokOd}" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Rok do: </span>
+                                  </div>
+                                  <input th:field="*{rokDo}" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                              </div>
+                              <div class="d-flex flex-row gap-3">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Moc od: </span>
+                                  </div>
+                                  <input th:field="*{mocOd}" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Moc do: </span>
+                                  </div>
+                                  <input th:field="*{mocDo}" type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                                </div>
+                              </div>
+                              <div class="d-flex flex-row gap-3">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text " id="inputGroup-sizing-default">Paliwo: </span>
+                                  </div>
+                                  <select th:field="*{paliwo}" class="form-select" aria-label="paliwo">
+                                    <option value="">PALIWO: Dowolny</option>
+                                    <option value="Diesel">PALIWO: Diesel</option>
+                                    <option value="Benzyna">PALIWO: Benzyna</option>
+                                    <option value="LPG">PALIWO: Benzyna+LPG</option>
+                                  </select>
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend w-25">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Typ: </span>
+                                  </div>
+                                  <select th:field="*{typ}" class="form-select" aria-label="typ">
+                                    <option value="">TYP: Dowolny</option>
+                                    <option value="Sedan">TYP: Sedan</option>
+                                    <option value="Kombi">TYP: Kombi</option>
+                                    <option value="Hatchback">TYP: Hatchback </option>
+                                    <option value="SUV">TYP: SUV</option>
+                                    <option value="Coupe">TYP: Coupe</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="d-grid gap-2 d-md-block justify-content-md-end w-50">
+                                <input type="submit" value="Szukaj" class="btn btn-primary col-5">
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+                      
+                    </div>
+                </div>
+            </div>
                 <div class="card bg-secondary w-100 mt-2" th:each="a : ${autaOut}">
                     <div class="card-body">
                         <div class="row flex-sm-nowrap ">
@@ -72,15 +156,14 @@
                             <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Typ: '+${a.typ}"></Label></div>    
                         </div>
                         <div class="row fs-5">
-                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Ubezpieczenie: '+${a.dataUbezpieczenia}"></Label></div>    
-                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Przegląd: '+${a.dataPrzeglad}"></Label></div>    
-                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Dodano: '+${a.dataDodania}"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Ubezpieczenie: '+(${a.dataUbezpieczenia} ?: 'BRAK')"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Przegląd: '+(${a.dataPrzeglad} ?: 'BRAK')"></Label></div>    
+                            <div class="col-md text-left" style="white-space: nowrap;"><Label th:utext="'Dodano: '+(${a.dataDodania} ?: 'BRAK')"></Label></div>    
                         </div>
                     </div>
                 </div>
             </table>
         </div>
-        <button  class="btn btn-secondary" onclick="window.location.href='/'">Główna</button>
     </div>
     </div>
     

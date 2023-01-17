@@ -11,6 +11,7 @@ public interface SamochodRepo extends JpaRepository<Samochod, Integer> {
 
     List<Samochod> findByCenaBetween(Integer x, Integer y);
 
+    List<Samochod> findAllBySprzedanyIs(int a);
    
 
 }
